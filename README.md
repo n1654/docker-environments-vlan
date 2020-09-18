@@ -2,7 +2,7 @@
 
 ## Purpose
 The main purpose of this LAB is to show how MSActivator can manage VLAN configuration.
-
+Achieved level of abstraction allows human controlling l2-switch as a typical swich despite the fact that this switch is a pure linux machine.
 
 ## Diagram
 
@@ -11,7 +11,7 @@ The main purpose of this LAB is to show how MSActivator can manage VLAN configur
     |                        |                       |                        |
     +-----------+------------+                       +------------+-----------+
                 |                                                 |
-       default vlan untagged                            vlan 100 untagged
+       default vlan untagged                            default vlan untagged
                 |                                                 |
                 |            +-----------------------+            |
                 |            |switch 172.20.0.145/24 |            |
@@ -22,10 +22,24 @@ The main purpose of this LAB is to show how MSActivator can manage VLAN configur
                 +------------+     | vlan_200  |     +------------+
                 |            |     +-----------+     |            |
                 |            +-----------------------+            |
-       default vlan untagged                            vlan 200 tagged
+        vlan 100 untagged                                 vlan 200 tagged
                 |                                                 |
                 |                                                 |
     +-----------+------------+                       +------------+-----------+
     |                        |                       |                        |
     | pc_03  172.20.0.143/24 |                       | pc_04  172.20.0.144/24 |
     +------------------------+                       +------------------------+
+
+## Scenario
+0. Default state:
+ - pc_01, pc_02 - can ping each other, placed in default_vlan
+ - pc_03 is not reachable, placed in 100 vlan
+ - pc_03 is not reachable, placed in 200 vlan, encapsulates frames with 200 802.1q tag.
+
+1. Set pc_01 in vlan 100 and ping pc_03
+
+2. Set pc_01 in vlan 200(untagged) and ping pc_04
+ - ensure with TCP dump packets are encapsulated/de-encapsulated properly
+
+3. Set pc_01 in vlan 200(tagged) and ping pc04
+ - note: pc_01 should have tagging enabled
