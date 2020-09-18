@@ -11,3 +11,15 @@ brctl addbr switch
 brctl addif switch eth1
 brctl addif switch eth2
 ifconfig switch up
+
+
+#!/bin/sh
+
+NUM=`echo $HOSTNAME | grep -E -o '[1-9]'`
+
+IPADDR=`ifconfig eth1 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}'`
+
+NEW_IPADDR='10.222.222.1'$NUM
+
+ip a d $IPADDR dev eth1
+ip a a $NEW_IPADDR dev eth1
