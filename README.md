@@ -1,5 +1,9 @@
 # VLAN management LAB
 
+## Purpose
+The main purpose of this LAB is to show how MSActivator can manage VLAN configuration.
+
+
 ## Diagram
 
     +------------------------+                       +------------------------+
