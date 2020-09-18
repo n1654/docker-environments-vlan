@@ -11,7 +11,7 @@ NEW_IPADDR='10.222.222.1'$NUM'/24'
 
 if [ $NUM = '4' ]; then
     ip a d $IPADDR dev $eth1
-    ip link add link eth1 name $eth1.200 type vlan id 200
+    ip link add link $eth1 name $eth1.200 type vlan id 200
     ip a a $NEW_IPADDR dev $eth1.200
     iplink set $eth1.200 up
 else
