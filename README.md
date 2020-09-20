@@ -17,7 +17,6 @@ Achieved level of abstraction allows human controlling l2-switch as a typical sw
      |        |eth0 |          |eth1 |          |eth2 |          |eth3 |        |
      |        +-----+          +-----+          +-----+          +-----+        |
      |                                                                          |
-     |                                                                          |
      +--------------------------------------------------------------------------+
 
 ## Diagram
