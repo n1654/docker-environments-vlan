@@ -9,8 +9,8 @@ Achieved level of abstraction allows human controlling l2-switch as a typical sw
              | pc_01 |        | pc_02 |        | pc_03 |        | pc_04 |
              |       |        |       |        |       |        |       |
              +-------+        +-------+        +-------+        +-------+
-           +-----------+    +-----------+    +-----------+    +-----------+
-           +-----------+    +-----------+    +-----------+    +-----------+
+           +vlandefault+    +vlandefault+    +-vlan 100--+    +-vlan 200--+
+           +-untagged--+    +-untagged--+    +-untagged--+    +---tagged--+
                  |                |                |                |
                  |                |                |                |
      +--------------------------------------------------------------------------+
