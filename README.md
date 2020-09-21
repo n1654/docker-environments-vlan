@@ -65,7 +65,7 @@ PASSWORD: root123
  - note: pc_01 should have tagging enabled
 
 ## Files description
-### [docker-compose.yml](https://github.com/n1654/docker-environments-vlan/blob/master/docker-compose.yml)
+### [docker-compose.yml](docker-compose.yml)
  - Docker compose file presumes using "quickstart_default" network for management plane.
  - Docker requires numbered network to be used, thus intranet network created, IP-prefixes allocated, but IP-prefixes will be replaced.
  - pc_ services have network interfaces connected, network interface order matters, but Docker makes this order **random**, [switch.sh](https://github.com/n1654/docker-environments-vlan/blob/master/switch.sh#L3) and [pc.sh](https://github.com/n1654/docker-environments-vlan/blob/master/pc.sh#L3) fixes this behaviour.
