@@ -68,21 +68,21 @@ PASSWORD: root123
 ### [docker-compose.yml](docker-compose.yml)
  - Docker compose file presumes using "quickstart_default" network for management plane.
  - Docker requires numbered network to be used, thus intranet network created, IP-prefixes allocated, but IP-prefixes will be replaced.
- - pc_ services have network interfaces connected, network interface order matters, but Docker makes this order **random**, [switch.sh](https://github.com/n1654/docker-environments-vlan/blob/master/switch.sh#L3) and [pc.sh](https://github.com/n1654/docker-environments-vlan/blob/master/pc.sh#L3) fixes this behaviour.
+ - pc_ services have network interfaces connected, network interface order matters, but Docker makes this order **random**, [switch.sh](switch.sh#L3) and [pc.sh](pc.sh#L3) fixes this behaviour.
  - Intranet networks for data plane and demo use-cases.
  - "quickstart_default" networkj for control.
 
-### [pc.dockerfile](https://github.com/n1654/docker-environments-vlan/blob/master/pc.dockerfile)
+### [pc.dockerfile](pc.dockerfile)
 Creates **PC** container based on Alpine v3.12 linux, packages:
  - openssh (to take control over PC)
- Uses [ETRYPOINT script](https://github.com/n1654/docker-environments-vlan/blob/master/pc.sh).
-### [switch.dockerfile](https://github.com/n1654/docker-environments-vlan/blob/master/switch.dockerfile)
+ Uses [ETRYPOINT script](pc.sh).
+### [switch.dockerfile](switch.dockerfile)
 Creates **SWITCH** container based on Alpine v3.12 linux, packages:
  - openssh (to take control over SWITCH)
- - bash (to make [patch script](https://github.com/n1654/docker-environments-vlan/blob/master/port) being executed)
+ - bash (to make [patch script](port) being executed)
  - tcpdump (capture/verify tagged traffic)
-Uses [ETRYPOINT script](https://github.com/n1654/docker-environments-vlan/blob/master/switch.sh)
-### [pc.sh](https://github.com/n1654/docker-environments-vlan/blob/master/pc.sh)
+Uses [ETRYPOINT script](switch.sh)
+### [pc.sh](pc.sh)
 WORKAROUND to assing certain network addresses to interfaces randomized by docker.
 consider "eht0" interface one that have 172.20.0.x address assigned by Docker DHCP.
 consider "eht1" interface one that have 10.222.x.y address assigned by Docker DHCP. 
@@ -108,12 +108,12 @@ else
     ip a a $NEW_IPADDR dev $eth1
 fi
 ```
-### [switch.sh](https://github.com/n1654/docker-environments-vlan/blob/master/switch.sh)
+### [switch.sh](switch.sh)
 Assings certain network addresses to interfaces randomized by docker.
 Creats tagged interface faced on PC_04.
 Uses bridge-utils to create network broadcast domains (VLANs).
 
-### [port](https://github.com/n1654/docker-environments-vlan/blob/master/port)
+### [port](port)
 This is the patch to retrieve appropriate network interface information:
 interface-id | interface name | vlan name | 802.1q tag |
 -------------|----------------|-----------|------------- 
