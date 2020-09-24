@@ -40,5 +40,8 @@ ifconfig vlan_default up
 ifconfig vlan_100 up
 ifconfig vlan_200 up
 
+# RUN SNMPD
+snmpd -C -c /etc/snmpd/snmpd.conf
+
 # RUN SSH SERVER
 /usr/sbin/sshd -D
