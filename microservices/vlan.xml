@@ -5,7 +5,7 @@
     <displayField>object_id</displayField>
     <serviceTaskType/>
     <order>0</order>
-    <visibility>5</visibility>
+    <visibility>0</visibility>
     <configType>cli</configType>
     <createTemplateId/>
     <createTemplateObject/>
@@ -27,10 +27,12 @@
   <variables frozen="0">
     <variable displayName="VLAN NAME" name="params.object_id" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="true" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
     <variable displayName="STATE" name="params.state" startIncrement="0" type="String" mandatoryArray="false" visible="true" description="" groupSeparator="" groupDisplayName="" displayOrder="0" increment="0" refServiceURI="" keepOnImport="false" editable="true" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
+    <variable displayName="hidden name" name="params.name" startIncrement="0" type="String" mandatoryArray="false" visible="false" description="mandatory variable for the Topology WF" groupSeparator="" groupDisplayName="" displayOrder="2" increment="0" refServiceURI="" keepOnImport="false" editable="false" onlyDetailView="false" localVarNameMatch="" remoteVarNameMatch="" arrayCanAdd="true" arrayCanRemove="true" arrayCanMove="true" arrayCanEdit="true" displayNameHeader="" fullDisplayName="" isMandatory="false" isUserLocked="false" isGrouped="false" isSearchable="false" isUniqueGlobal="false"/>
   </variables>
   <example/>
   <command name="IMPORT">
     <operation>ip a</operation>
+    <post_template>{assign_object_variable var=&quot;name&quot; value=$params.object_id}</post_template>
     <parser>
       <section>
         <regexp>@:\svlan_(?&lt;object_id&gt;\w+):\s\S+\s\S+\s\S+\s+\S+\s\S+\s\S+\s(?&lt;state&gt;\w+)@</regexp>
@@ -58,8 +60,8 @@ brctl addbr vlan_{$params.object_id}
 {/if}</operation>
   </command>
   <command name="DELETE">
-    <operation>ifconfig vlan_{$vlan_list.$object_id.object_id} down
-brctl delbr vlan_{$vlan_list.$object_id.object_id}</operation>
+    <operation>ifconfig vlan_{$vlan.$object_id.object_id} down
+brctl delbr vlan_{$vlan.$object_id.object_id}</operation>
   </command>
   <command name="READ"/>
   <command name="LIST"/>
