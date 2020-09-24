@@ -4,7 +4,7 @@ RUN mkdir /start
 WORKDIR /start
 
 COPY ./pc.sh /start
-COPY snmpd.conf /etc/snmp/
+COPY ./snmpd.conf /etc/snmpd/snmpd.conf
 
 RUN apk add --no-cache openssh bash net-snmp
 
