@@ -29,5 +29,8 @@ PasswordAuthentication yes" >> /etc/ssh/sshd_config
 # CHANGE ROOT PASSWORD
 echo root:root123 | chpasswd
 
+# RUN SNMPD
+snmpd -C -c /etc/snmpd/snmpd.conf
+
 # RUN SSH SERVER
 /usr/sbin/sshd -D
